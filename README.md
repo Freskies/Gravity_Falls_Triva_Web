@@ -1,12 +1,19 @@
-# React + Vite
+# Gravity Falls Trivia
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a simple trivia game based on the animated series "Gravity Falls".
+The game consists of a series of questions about the show, and the player has to answer them correctly to score points.
 
-Currently, two official plugins are available:
+## Technology Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Vite
+- React (JavaScript)
+- React Router
+- Redux Toolkit
+- Tailwind CSS
 
-## Expanding the ESLint configuration
+This webapp does not use any backend server. All the data is stored in the frontend using Redux Toolkit.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Why This Project?
+
+This project was created as a fun way to practice Tailwind and Redux Toolkit.
+Also, I am a big fan of the show, so it was a great opportunity to combine my interests.
