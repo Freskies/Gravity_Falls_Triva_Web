@@ -8,7 +8,7 @@ const initialState = {
 	correctAnswersToWin: DEFAULT_CORRECT_ANSWERS_TO_WIN,
 };
 
-const settingsSlice = createSlice({
+const homeSlice = createSlice({
 	name: "settings",
 	initialState,
 	reducers: {
@@ -40,6 +40,6 @@ export const {
 	resetNumberOfPlayers,
 	setCorrectAnswersToWin,
 	resetCorrectAnswersToWin,
-} = settingsSlice.actions;
+} = homeSlice.actions;
 export { getNumberOfPlayers, getCorrectAnswersToWin };
-export default settingsSlice.reducer;
+export default homeSlice.reducer;

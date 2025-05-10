@@ -7,18 +7,21 @@ const initialState = {
 	players: [],
 	activePlayerIndex: 0,
 	activeQuestion: null,
-	questions: allQuestions,
+	questions: Array.from(allQuestions),
+	numberOfTurns: undefined,
+	turn: 1,
 };
 
 const quizSlice = createSlice({
 	name: "quiz",
 	initialState,
 	reducers: {
-		createPlayers (state, action) {
+		setupQuiz (state, action) {
+			const { numberOfPlayers, numberOfTurns } = action.payload;
+			state.numberOfTurns = numberOfTurns;
 			// pick random players
-			const numPlayers = action.payload;
 			const playerIndexes = Array.from(allPlayers, (_, i) => i);
-			state.players = Array.from({ length: numPlayers }, () => allPlayers[extractRandom(playerIndexes)]);
+			state.players = Array.from({ length: numberOfPlayers }, () => allPlayers[extractRandom(playerIndexes)]);
 			// extract the first question
 			state.activeQuestion = extractRandom(state.questions);
 		},
@@ -40,5 +43,5 @@ function getActiveQuestion (state) {
 }
 
 export { getPlayers, getActiveQuestion };
-export const { createPlayers, nextTurn } = quizSlice.actions;
+export const { setupQuiz, nextTurn } = quizSlice.actions;
 export default quizSlice.reducer;

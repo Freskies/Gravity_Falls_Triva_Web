@@ -1,12 +1,35 @@
 import { createBrowserRouter, RouterProvider } from "react-router";
-import AppLayout from "./ui/AppLayout.jsx";
-import ErrorPage from "./ui/ErrorPage.jsx";
+import AppLayout from "./routes/AppLayout.jsx";
+import ErrorPage from "./routes/ErrorPage.jsx";
+import createPlayersAction from "./features/quiz/createPlayersAction.js";
+import HomePage from "./routes/HomePage.jsx";
+import QuizPage from "./routes/QuizPage.jsx";
+import ResultsPage from "./routes/ResultsPage.jsx";
 
 const router = createBrowserRouter([
 	{
-		path: "/",
 		element: <AppLayout/>,
 		errorElement: <ErrorPage/>,
+		children: [
+			{
+				path: "/",
+				element: <HomePage/>,
+				action: createPlayersAction,
+			},
+			{
+				path: "/quiz",
+				element: <QuizPage/>,
+				children: [
+					{
+						path: "",
+					},
+				],
+			},
+			{
+				path: "/results",
+				element: <ResultsPage/>,
+			},
+		],
 	},
 ]);
 

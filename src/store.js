@@ -1,10 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
 import quizReducer from "./features/quiz/quizSlice.js";
-import settingsReducer from "./features/settings/settingsSlice.js";
+import homeReducer from "./features/home/homeSlice.js";
 
 const store = configureStore({
 	reducer: {
-		settings: settingsReducer,
+		home: homeReducer,
 		quiz: quizReducer,
 	},
 });
