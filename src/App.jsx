@@ -1,7 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router";
 import AppLayout from "./routes/AppLayout.jsx";
 import ErrorPage from "./routes/ErrorPage.jsx";
-import createPlayersAction from "./features/quiz/createPlayersAction.js";
+import createPlayersAction from "./features/quiz/setupQuizAction.js";
 import HomePage from "./routes/HomePage.jsx";
 import QuizPage from "./routes/QuizPage.jsx";
 import ResultsPage from "./routes/ResultsPage.jsx";
