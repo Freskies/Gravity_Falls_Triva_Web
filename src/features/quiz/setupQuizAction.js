@@ -5,8 +5,8 @@ import { redirect } from "react-router";
 async function action ({ request }) {
 	const formData = await request.formData();
 	const data = Object.fromEntries(formData);
-	store.dispatch(setupQuiz(data));
-	return redirect("/quiz")
+	store.dispatch(setupQuiz({ pointsToWin: data.pointsToWin }));
+	return redirect("/quiz");
 }
 
 export default action;

@@ -1,12 +1,11 @@
 import { Form } from "react-router";
-import { getMaxNumberOfTurns, MAX_NUMBER_OF_PLAYERS } from "../data/info.js";
+import { DEFAULT_POINTS_TO_WIN, getMaxNumberOfPoints, MAX_NUMBER_OF_PLAYERS } from "../data/info.js";
 import { useState } from "react";
 
 const possiblePlayersNumber = Array.from({ length: MAX_NUMBER_OF_PLAYERS }, (_, i) => i + 1);
 
 function HomePage () {
 	const [numberOfPlayers, setNumberOfPlayers] = useState(1);
-	const maxNumberOfTurn = getMaxNumberOfTurns(numberOfPlayers);
 
 	return <div className={`h-full bg-amber-100`}>
 		<header>
@@ -22,13 +21,13 @@ function HomePage () {
 					</select>
 				</label>
 				<label>
-					<span>Number of Turn:</span>
+					<span>Points to win:</span>
 					<input
 						type="number"
-						name="numberOfTurns"
+						name="pointsToWin"
 						min={1}
-						max={maxNumberOfTurn}
-						defaultValue={10}
+						max={getMaxNumberOfPoints(numberOfPlayers)}
+						defaultValue={DEFAULT_POINTS_TO_WIN}
 						required
 					/>
 				</label>

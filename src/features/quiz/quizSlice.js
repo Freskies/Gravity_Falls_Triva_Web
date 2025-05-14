@@ -4,11 +4,9 @@ import allPlayers from "./../../data/players.json";
 import { extractRandom } from "../../utils/helper.js";
 
 const initialState = {
-	players: [],
-	activePlayerIndex: 0,
 	activeQuestion: null,
 	questions: Array.from(allQuestions),
-	numberOfTurns: undefined,
+	pointsToWin: undefined,
 	turn: 1,
 };
 
@@ -17,15 +15,19 @@ const quizSlice = createSlice({
 	initialState,
 	reducers: {
 		setupQuiz (state, action) {
-			const { numberOfPlayers, numberOfTurns } = action.payload;
-			state.numberOfTurns = numberOfTurns;
+			const { pointsToWin } = action.payload;
+			state.pointsToWin = pointsToWin;
 			// pick random players
-			const playerIndexes = Array.from(allPlayers, (_, i) => i);
-			state.players = Array.from({ length: numberOfPlayers }, () => allPlayers[extractRandom(playerIndexes)]);
+
 			// extract the first question
 			state.activeQuestion = extractRandom(state.questions);
 		},
-		nextTurn (state) {
+		nextTurn (state, action) {
+			const { isAnsweredCorrectly } = action.payload;
+			state.players[state.activePlayerIndex].questions.push({
+				question: state.activeQuestion.question,
+				isAnsweredCorrectly,
+			});
 			// next player
 			state.activePlayerIndex = (state.activePlayerIndex + 1) % state.players.length;
 			// next question
@@ -34,14 +36,10 @@ const quizSlice = createSlice({
 	},
 });
 
-function getPlayers (state) {
-	return state.quiz.players;
-}
-
 function getActiveQuestion (state) {
 	return state.quiz.activeQuestion;
 }
 
-export { getPlayers, getActiveQuestion };
+export { getActiveQuestion };
 export const { setupQuiz, nextTurn } = quizSlice.actions;
 export default quizSlice.reducer;

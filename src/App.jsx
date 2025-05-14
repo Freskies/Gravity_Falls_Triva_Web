@@ -1,4 +1,4 @@
-import { createBrowserRouter, RouterProvider } from "react-router";
+import { createBrowserRouter, Navigate, RouterProvider } from "react-router";
 import AppLayout from "./routes/AppLayout.jsx";
 import ErrorPage from "./routes/ErrorPage.jsx";
 import createPlayersAction from "./features/quiz/setupQuizAction.js";
@@ -8,26 +8,21 @@ import ResultsPage from "./routes/ResultsPage.jsx";
 
 const router = createBrowserRouter([
 	{
-		element: <AppLayout/>,
-		errorElement: <ErrorPage/>,
+		Component: AppLayout,
+		errorElement: <Navigate to="/" replace/>,
 		children: [
 			{
 				path: "/",
-				element: <HomePage/>,
+				Component: HomePage,
 				action: createPlayersAction,
 			},
 			{
 				path: "/quiz",
-				element: <QuizPage/>,
-				children: [
-					{
-						path: "",
-					},
-				],
+				Component: QuizPage,
 			},
 			{
 				path: "/results",
-				element: <ResultsPage/>,
+				Component: ResultsPage,
 			},
 		],
 	},
