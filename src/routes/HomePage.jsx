@@ -8,11 +8,11 @@ function HomePage () {
 	const [numberOfPlayers, setNumberOfPlayers] = useState(1);
 
 	return <div className={`h-full bg-amber-100`}>
-		<header>
+		<header className={`h-[20%] bg-amber-300`}>
 			<img src="/gravity-falls-logo.png" alt={"Gravity falls logo"}/>
 		</header>
-		<main>
-			<Form method="POST" className={`min-w-8 w-[80%] max-w-80`}>
+		<main className={`h-[70%] grid place-items-center`}>
+			<Form method="POST" className={`min-w-8 w-[80%] max-w-80 h-120 flex flex-col gap-5 relative bg-red-100`}>
 				<label className={`flex flex-col`}>
 					<span>Number of Players:</span>
 					<select name="numberOfPlayers" value={numberOfPlayers}
@@ -31,7 +31,9 @@ function HomePage () {
 						required
 					/>
 				</label>
-				<button type="submit">START QUIZ</button>
+				<button type="submit" className={`px-6 py-2 bg-amber-200 rounded-4xl justify-self-end place-self-end`}>
+					START QUIZ
+				</button>
 			</Form>
 		</main>
 		<footer></footer>
