@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 import allQuestions from "./../../data/questions.json";
-import allPlayers from "./../../data/players.json";
 import { extractRandom } from "../../utils/helper.js";
 
 const initialState = {
@@ -16,21 +15,10 @@ const quizSlice = createSlice({
 	reducers: {
 		setupQuiz (state, action) {
 			const { pointsToWin } = action.payload;
-			state.pointsToWin = pointsToWin;
-			// pick random players
-
-			// extract the first question
+			state.pointsToWin = +pointsToWin;
 			state.activeQuestion = extractRandom(state.questions);
 		},
-		nextTurn (state, action) {
-			const { isAnsweredCorrectly } = action.payload;
-			state.players[state.activePlayerIndex].questions.push({
-				question: state.activeQuestion.question,
-				isAnsweredCorrectly,
-			});
-			// next player
-			state.activePlayerIndex = (state.activePlayerIndex + 1) % state.players.length;
-			// next question
+		nextQuestion (state) {
 			state.activeQuestion = extractRandom(state.questions);
 		},
 	},
@@ -41,5 +29,5 @@ function getActiveQuestion (state) {
 }
 
 export { getActiveQuestion };
-export const { setupQuiz, nextTurn } = quizSlice.actions;
+export const { setupQuiz, nextQuestion } = quizSlice.actions;
 export default quizSlice.reducer;

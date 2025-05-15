@@ -1,12 +1,29 @@
 import { useDispatch, useSelector } from "react-redux";
-import { getActiveQuestion, nextTurn } from "./quizSlice.js";
+import { getActiveQuestion, nextQuestion } from "./quizSlice.js";
+import { hasWon, answer } from "../players/playersSlice.js";
+import { useNavigate } from "react-router";
+import store from "../../store.js";
 
 function Quiz () {
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
 	const activeQuestion = useSelector(getActiveQuestion);
 
-	const dispatchCorrectAnswer = () => dispatch(nextTurn({ isAnsweredCorrectly: true }));
-	const dispatchWrongAnswer = () => dispatch(nextTurn({ isAnsweredCorrectly: false }));
+	function handleAnswer () {
+		const currentWon = hasWon(store.getState());
+		if (currentWon) navigate("/results", { replace: true });
+		else dispatch(nextQuestion());
+	}
+
+	function dispatchCorrectAnswer () {
+		dispatch(answer({ isAnsweredCorrectly: true, question: activeQuestion.question }));
+		handleAnswer();
+	}
+
+	function dispatchWrongAnswer () {
+		dispatch(answer({ isAnsweredCorrectly: false, question: activeQuestion.question }));
+		handleAnswer();
+	}
 
 	return <>
 		<p>

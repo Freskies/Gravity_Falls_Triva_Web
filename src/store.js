@@ -4,8 +4,8 @@ import playersReducer from "./features/players/playersSlice.js";
 
 const store = configureStore({
 	reducer: {
-		quiz: quizReducer,
 		players: playersReducer,
+		quiz: quizReducer,
 	},
 });
 

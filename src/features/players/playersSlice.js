@@ -17,7 +17,18 @@ const playersSlice = createSlice({
 			state.players = Array.from({ length: numberOfPlayers }, () => ({
 				...allPlayers[extractRandom(playerIndexes)],
 				questions: [],
+				score: 0,
 			}));
+		},
+		answer (state, action) {
+			const { isAnsweredCorrectly, question } = action.payload;
+			const activePlayer = state.players[state.activePlayerIndex];
+			// update score
+			if (isAnsweredCorrectly) activePlayer.score++;
+			// save answer
+			activePlayer.questions.push({ question, isAnsweredCorrectly });
+			// next player
+			state.activePlayerIndex = (state.activePlayerIndex + 1) % state.players.length;
 		},
 	},
 });
@@ -26,6 +37,12 @@ function getPlayers (state) {
 	return state.players.players;
 }
 
-export { getPlayers };
-export const { setupPlayers } = playersSlice.actions;
+function hasWon (state) {
+	const playersState = state.players;
+	const quizState = state.quiz;
+	return playersState.players[playersState.activePlayerIndex].score === quizState.pointsToWin;
+}
+
+export { getPlayers, hasWon };
+export const { setupPlayers, answer } = playersSlice.actions;
 export default playersSlice.reducer;

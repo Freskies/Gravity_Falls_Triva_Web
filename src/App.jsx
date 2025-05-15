@@ -1,7 +1,6 @@
 import { createBrowserRouter, Navigate, RouterProvider } from "react-router";
 import AppLayout from "./routes/AppLayout.jsx";
-import ErrorPage from "./routes/ErrorPage.jsx";
-import createPlayersAction from "./features/quiz/setupQuizAction.js";
+import setupQuizAction from "./features/home/setupQuizAction.js";
 import HomePage from "./routes/HomePage.jsx";
 import QuizPage from "./routes/QuizPage.jsx";
 import ResultsPage from "./routes/ResultsPage.jsx";
@@ -14,7 +13,7 @@ const router = createBrowserRouter([
 			{
 				path: "/",
 				Component: HomePage,
-				action: createPlayersAction,
+				action: setupQuizAction,
 			},
 			{
 				path: "/quiz",
