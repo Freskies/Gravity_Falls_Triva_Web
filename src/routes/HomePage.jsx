@@ -9,11 +9,11 @@ function HomePage () {
 
 	return <div className={`h-full bg-amber-100`}>
 		<header>
-			<h1 className={`text-center text-2xl font-extrabold`}>GRAVITY FALLS TRIVIA</h1>
+			<img src="/gravity-falls-logo.png" alt={"Gravity falls logo"}/>
 		</header>
 		<main>
-			<Form method="POST">
-				<label>
+			<Form method="POST" className={`min-w-8 w-[80%] max-w-80`}>
+				<label className={`flex flex-col`}>
 					<span>Number of Players:</span>
 					<select name="numberOfPlayers" value={numberOfPlayers}
 					        onChange={e => setNumberOfPlayers(+e.target.value)}>
